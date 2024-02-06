@@ -30,10 +30,10 @@ public class PipelineStack extends Stack {
         Environment envDev = makeEnv(DEV_ACCOUNT, REGION);
         Environment envPROD = makeEnv(PROD_ACCOUNT, REGION);
 
-        final CodePipeline pipeline = new CodePipeline(this, "CDKPipeline",
+        final CodePipeline pipeline = new CodePipeline(this, "CDKPipelineJava",
                 CodePipelineProps.builder()
                         .crossAccountKeys(true)
-                        .pipelineName("CDKPipeline")
+                        .pipelineName("CDKPipelineJava")
                         .synth(new ShellStep("build", ShellStepProps.builder()
                                 .input(CodePipelineSource
                                         .gitHub(githubOrg + pathSeparator + githubRepo, githuBranch))
