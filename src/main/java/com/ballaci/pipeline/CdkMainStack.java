@@ -35,7 +35,7 @@ public class CdkMainStack extends Stack {
                 .handler(hello)
                 .build();
 
-        helloUrl = CfnOutput.Builder.create(this, "TableViewerUrl")
+        helloUrl = CfnOutput.Builder.create(this, "ApiUrl")
                 .value(gateway.getUrl())
                 .build();
     }
