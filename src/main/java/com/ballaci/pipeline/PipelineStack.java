@@ -1,5 +1,7 @@
 package com.ballaci.pipeline;
 
+import io.github.cdklabs.cdknag.NagPackSuppression;
+import io.github.cdklabs.cdknag.NagSuppressions;
 import software.amazon.awscdk.Environment;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
@@ -43,7 +45,7 @@ public class PipelineStack extends Stack {
 
                         .build());
 
-        StageDeployment devStage =  pipeline.addStage(new PipelineAppStage(this, "DEV", StageProps.builder()
+        StageDeployment devStage = pipeline.addStage(new PipelineAppStage(this, "DEV", StageProps.builder()
                 .env(Environment.builder()
                         .account("637423573379")
                         .region("eu-central-1")
@@ -65,7 +67,7 @@ public class PipelineStack extends Stack {
 
                 CodeBuildStep.Builder.create("TestAPIGatewayEndpoint")
                         .projectName("TestAPIGatewayEndpoint")
-                        .envFromCfnOutputs(Map.of("ENDPOINT_URL",  deploy.helloUrl))
+                        .envFromCfnOutputs(Map.of("ENDPOINT_URL", deploy.helloUrl))
                         .commands(List.of(
                                 "curl -Ssf $ENDPOINT_URL",
                                 "curl -Ssf $ENDPOINT_URL/hello",
